@@ -3,13 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package database;
-
-import User.User;
-import database.UsersTable;
-import netscape.security.UserTarget;
-
-import java.sql.SQLException;
+package model;
 
 /**
  *
@@ -23,9 +17,8 @@ public class TestMySQL {
     public static void main(String[] args) {
         // TODO code application logic here
         try {
-            UsersTable.connection();
-            UsersTable.upDateById(4,"test","1234");
-            UsersTable.printAllUsers();
+            UsersTable usersTable = new UsersTable();
+            usersTable.addUser("Dao", "abc");
         } catch (Exception e){
             e.printStackTrace();
         }

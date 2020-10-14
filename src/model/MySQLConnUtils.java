@@ -1,11 +1,10 @@
-package database;
+package model;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
@@ -27,7 +26,7 @@ public class MySQLConnUtils {
      String userName = null;
      String password= null;
      try {
-         Object obj = parser.parse(new FileReader("src/database/ConfigDatabase.json"));
+         Object obj = parser.parse(new FileReader("src/model/ConfigDatabase.json"));
          JSONObject jsonObject = (JSONObject) obj;
          hostName = jsonObject.get("hostName").toString();
          dbName = jsonObject.get("dbName").toString();
