@@ -11,7 +11,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import model.AdminTable;
+import service.AdminService;
 
 
 import java.io.IOException;
@@ -20,7 +20,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
-    private AdminTable adminTable = new AdminTable();
+    private AdminService adminTable = new AdminService();
     @FXML
     private TextField userName;
     @FXML
@@ -65,7 +65,7 @@ public class LoginController implements Initializable {
         try {
             Stage adminStage = new Stage();
             FXMLLoader adminLoader = new FXMLLoader();
-            Pane adminRoot = (Pane)adminLoader.load(getClass().getResource("/view/admin.fxml").openStream());
+            Pane adminRoot = (Pane)adminLoader.load(getClass().getResource("/view/admin.fxml"));
             AdminController adminController = (AdminController)adminLoader.getController();
             Scene scene = new Scene(adminRoot);
             adminStage.setScene(scene);

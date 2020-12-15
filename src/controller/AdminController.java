@@ -10,16 +10,12 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Cursor;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
-import model.UsersTable;
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,12 +25,11 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 public class AdminController implements Initializable {
-    private UsersTable usersTable = new UsersTable();
 
     @FXML
     private Label dateLabel, timeLabel;
     @FXML
-    private JFXButton btnHome, btnUserManagement;
+    private JFXButton btnHome, btnUserManagement, btnQuanLyQuy, btnHoKhau, btnThongKe;
 
     @FXML
     private AnchorPane rootPane;
@@ -54,11 +49,27 @@ public class AdminController implements Initializable {
     @FXML
     private void setBackgroundUserManagement(javafx.scene.input.MouseEvent event){
         btnHome.setStyle("-fx-background-color: #ECF0F1");
+        btnHoKhau.setStyle("-fx-background-color: #ECF0F1");
+        btnQuanLyQuy.setStyle("-fx-background-color: #ECF0F1");
+        btnThongKe.setStyle("-fx-background-color: #ECF0F1");
         btnUserManagement.setStyle("-fx-background-color: #D2D7D3");
+    }
+    @FXML
+    private void setBackgroundQuanLyQuy(javafx.scene.input.MouseEvent event){
+        btnHome.setStyle("-fx-background-color: #ECF0F1");
+        btnHoKhau.setStyle("-fx-background-color: #ECF0F1");
+        btnThongKe.setStyle("-fx-background-color: #ECF0F1");
+        btnUserManagement.setStyle("-fx-background-color: #ECF0F1");
+        btnQuanLyQuy.setStyle("-fx-background-color: #D2D7D3");
     }
     @FXML
     private void userManagementClicked() throws IOException{
         userManagementMenu();
+    }
+
+    @FXML
+    private void quanLyQuyClicked() throws IOException{
+        quanLyQuyMenu();
     }
 
     public void userManagementMenu() throws IOException{
@@ -67,12 +78,26 @@ public class AdminController implements Initializable {
             rootPane.setOpacity(0);
             new FadeInRightTransition(rootPane).play();
             FXMLLoader adminLoader = new FXMLLoader();
-            AnchorPane pane = (AnchorPane)adminLoader.load(getClass().getResource("/view/usermanagement.fxml").openStream());
+            AnchorPane pane = (AnchorPane)adminLoader.load(getClass().getResource("/view/nhankhau/nhankhau.fxml").openStream());
             rootPane.getChildren().setAll(pane);
         } catch (IOException e) {
             System.out.println(e);
         }
     }
+
+    public void quanLyQuyMenu() throws IOException{
+        try {
+            rootPane.getChildren().clear();
+            rootPane.setOpacity(0);
+            new FadeInRightTransition(rootPane).play();
+            FXMLLoader adminLoader = new FXMLLoader();
+            AnchorPane pane = (AnchorPane)adminLoader.load(getClass().getResource("/view/khoanthu/quanlykhoanthu.fxml"));
+            rootPane.getChildren().setAll(pane);
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
     private void printTime() {
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.seconds(0),
@@ -97,7 +122,6 @@ public class AdminController implements Initializable {
         SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
         dateLabel.setText(sdf.format(date));
     }
-
 
 
 }

@@ -1,4 +1,6 @@
-package model;
+package service;
+
+import service.ConnectionUtils;
 
 import java.sql.Connection;
 import java.sql.SQLException;

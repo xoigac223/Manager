@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="499.0" prefWidth="720.0" style="-fx-background-color: #ececec;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.nhankhau.AddNhanKhauController">
+   <children>
+      <Label layoutX="261.0" layoutY="14.0" text="Thêm mới nhân khẩu">
+         <font>
+            <Font name="Segoe UI Bold" size="18.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="hoVaTen" labelFloat="true" layoutX="19.0" layoutY="57.0" prefHeight="26.0" prefWidth="270.0" promptText="Họ và tên" style="-jfx-disable-animation: false;">
+         <font>
+            <Font name="Segoe UI" size="12.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="nguyenQuan" labelFloat="true" layoutX="20.0" layoutY="148.0" prefHeight="25.0" prefWidth="271.0" promptText="Nguyên quán" style="-jfx-disable-animation: false;">
+         <font>
+            <Font name="Segoe UI" size="12.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="ngaySinh" editable="false" labelFloat="true" layoutX="20.0" layoutY="101.0" prefHeight="26.0" prefWidth="241.0" promptText="Ngày sinh" style="-jfx-disable-animation: false;">
+         <font>
+            <Font name="Segoe UI" size="12.0" />
+         </font>
+      </JFXTextField>
+      <JFXDatePicker fx:id="date_picker" defaultColor="#4183d7" editable="false" focusTraversable="false" layoutX="269.0" layoutY="106.0" onAction="#dateClicked" prefHeight="25.0" prefWidth="0.0" />
+      <JFXButton layoutX="104.0" layoutY="453.0" onAction="#insertClicked" prefHeight="32.0" prefWidth="73.0" style="-fx-background-color: #4183d7;" text="Thêm" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI" size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXTextField fx:id="noiThuongTru" labelFloat="true" layoutX="21.0" layoutY="279.0" prefHeight="25.0" prefWidth="271.0" promptText="Nơi thường trú" style="-jfx-disable-animation: false;">
+         <font>
+            <Font name="Segoe UI" size="12.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="hocVan" labelFloat="true" layoutX="21.0" layoutY="322.0" prefHeight="25.0" prefWidth="271.0" promptText="Trình độ học vấn" style="-jfx-disable-animation: false;">
+         <font>
+            <Font name="Segoe UI" size="12.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="ngoaiNgu" labelFloat="true" layoutX="22.0" layoutY="363.0" prefHeight="25.0" prefWidth="271.0" promptText="Trình độ ngoại ngữ" style="-jfx-disable-animation: false;">
+         <font>
+            <Font name="Segoe UI" size="12.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="ngheNghiep" labelFloat="true" layoutX="22.0" layoutY="406.0" prefHeight="25.0" prefWidth="271.0" promptText="Nghề nghiệp" style="-jfx-disable-animation: false;">
+         <font>
+            <Font name="Segoe UI" size="12.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="bietDanh" labelFloat="true" layoutX="383.0" layoutY="58.0" prefHeight="26.0" prefWidth="270.0" promptText="Biệt danh" style="-jfx-disable-animation: false;">
+         <font>
+            <Font name="Segoe UI" size="12.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="tonGiao" labelFloat="true" layoutX="386.0" layoutY="147.0" prefHeight="26.0" prefWidth="270.0" promptText="Tôn giáo" style="-jfx-disable-animation: false;">
+         <font>
+            <Font name="Segoe UI" size="12.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="quocTich" labelFloat="true" layoutX="387.0" layoutY="190.0" prefHeight="26.0" prefWidth="270.0" promptText="Quốc tịch" style="-jfx-disable-animation: false;">
+         <font>
+            <Font name="Segoe UI" size="12.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="hoChieu" labelFloat="true" layoutX="386.0" layoutY="235.0" prefHeight="26.0" prefWidth="270.0" promptText="Hộ chiếu số" style="-jfx-disable-animation: false;">
+         <font>
+            <Font name="Segoe UI" size="12.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="diaChiHienTai" labelFloat="true" layoutX="385.0" layoutY="277.0" prefHeight="26.0" prefWidth="270.0" promptText="Địa chỉ hiện tại" style="-jfx-disable-animation: false;">
+         <font>
+            <Font name="Segoe UI" size="12.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="trinhDoChuyenMon" labelFloat="true" layoutX="384.0" layoutY="320.0" prefHeight="26.0" prefWidth="270.0" promptText="Trình độ chuyên môn" style="-jfx-disable-animation: false;">
+         <font>
+            <Font name="Segoe UI" size="12.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="tiengDanToc" labelFloat="true" layoutX="385.0" layoutY="361.0" prefHeight="26.0" prefWidth="270.0" promptText="Biết tiếng dân tộc" style="-jfx-disable-animation: false;">
+         <font>
+            <Font name="Segoe UI" size="12.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="noiLamViec" labelFloat="true" layoutX="383.0" layoutY="406.0" prefHeight="26.0" prefWidth="270.0" promptText="Nơi làm việc" style="-jfx-disable-animation: false;">
+         <font>
+            <Font name="Segoe UI" size="12.0" />
+         </font>
+      </JFXTextField>
+      <JFXComboBox fx:id="gioiTinh" layoutX="384.0" layoutY="105.0" prefHeight="25.0" prefWidth="271.0" promptText="Giới tính" />
+      <FontAwesomeIcon fill="RED" glyphName="ASTERISK" layoutX="306.0" layoutY="131.0" />
+      <FontAwesomeIcon fill="RED" glyphName="ASTERISK" layoutX="305.0" layoutY="179.0" />
+      <FontAwesomeIcon fill="RED" glyphName="ASTERISK" layoutX="305.0" layoutY="221.0" />
+      <FontAwesomeIcon fill="RED" glyphName="ASTERISK" layoutX="305.0" layoutY="266.0" />
+      <FontAwesomeIcon fill="RED" glyphName="ASTERISK" layoutX="305.0" layoutY="310.0" />
+      <FontAwesomeIcon fill="RED" glyphName="ASTERISK" layoutX="306.0" layoutY="353.0" />
+      <FontAwesomeIcon fill="RED" glyphName="ASTERISK" layoutX="306.0" layoutY="394.0" />
+      <FontAwesomeIcon fill="RED" glyphName="ASTERISK" layoutX="306.0" layoutY="80.0" />
+      <FontAwesomeIcon fill="RED" glyphName="ASTERISK" layoutX="306.0" layoutY="437.0" />
+      <FontAwesomeIcon fill="RED" glyphName="ASTERISK" layoutX="665.0" layoutY="127.0" />
+      <FontAwesomeIcon fill="RED" glyphName="ASTERISK" layoutX="665.0" layoutY="222.0" />
+      <FontAwesomeIcon fill="RED" glyphName="ASTERISK" layoutX="665.0" layoutY="179.0" />
+      <FontAwesomeIcon fill="RED" glyphName="ASTERISK" layoutX="665.0" layoutY="309.0" />
+      <FontAwesomeIcon fill="RED" glyphName="ASTERISK" layoutX="665.0" layoutY="352.0" />
+      <FontAwesomeIcon fill="RED" glyphName="ASTERISK" layoutX="665.0" layoutY="393.0" />
+      <FontAwesomeIcon fill="RED" glyphName="ASTERISK" layoutX="665.0" layoutY="438.0" />
+      <JFXTextField fx:id="cmt" labelFloat="true" layoutX="22.0" layoutY="235.0" prefHeight="25.0" prefWidth="271.0" promptText="CMND/CCCD" style="-jfx-disable-animation: false;">
+         <font>
+            <Font name="Segoe UI" size="12.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="danToc" labelFloat="true" layoutX="22.0" layoutY="191.0" prefHeight="25.0" prefWidth="271.0" promptText="Dân tộc" style="-jfx-disable-animation: false;">
+         <font>
+            <Font name="Segoe UI" size="12.0" />
+         </font>
+      </JFXTextField>
+      <JFXButton layoutX="22.0" layoutY="453.0" onAction="#khacClicked" prefHeight="32.0" prefWidth="73.0" style="-fx-background-color: #4183d7;" text="Khác" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI" size="14.0" />
+         </font>
+      </JFXButton>
+   </children>
+   <effect>
+      <DropShadow />
+   </effect>
+</AnchorPane>

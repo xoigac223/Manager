@@ -1,4 +1,4 @@
-package model;
+package service;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -26,7 +26,7 @@ public class MySQLConnUtils {
      String userName = null;
      String password= null;
      try {
-         Object obj = parser.parse(new FileReader("src/model/ConfigDatabase.json"));
+         Object obj = parser.parse(new FileReader("src/service/ConfigDatabase.json"));
          JSONObject jsonObject = (JSONObject) obj;
          hostName = jsonObject.get("hostName").toString();
          dbName = jsonObject.get("dbName").toString();

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package service;
 
 /**
  *
@@ -17,8 +17,8 @@ public class TestMySQL {
     public static void main(String[] args) {
         // TODO code application logic here
         try {
-            UsersTable usersTable = new UsersTable();
-            usersTable.addUser("Dao", "abc");
+            //UsersTable usersTable = new UsersTable();
+           // usersTable.addUser("Dao", "abc");
         } catch (Exception e){
             e.printStackTrace();
         }

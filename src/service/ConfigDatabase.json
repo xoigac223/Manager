@@ -1,6 +1,6 @@
 {
   "hostName" : "localhost",
-  "dbName" : "mysql_db",
+  "dbName" : "cnpm",
   "userName" : "root",
   "password" : "XoiGac223"
 }
