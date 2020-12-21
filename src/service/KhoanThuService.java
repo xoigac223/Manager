@@ -4,13 +4,9 @@ import datatable.KhoanThuData;
 import datatable.ThuPhiData;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import datatable.NhanKhauData;
 import model.KhoanThuModel;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class KhoanThuService extends Database {
 
@@ -63,7 +59,6 @@ public class KhoanThuService extends Database {
         } else if (loaiKhoanThu.equals("Không bắt buộc")){
             sql = sql + " AND batBuoc = 0";
         }
-        System.out.println(sql);
         ResultSet rs = st.executeQuery(sql);
         int i = 1;
         while (rs.next())
@@ -140,27 +135,55 @@ public class KhoanThuService extends Database {
     }
 
     public ObservableList<ThuPhiData> getThuPhi(String id, String soTien)throws SQLException {
-        System.out.println(id + " " + soTien);
         ObservableList<ThuPhiData> data = FXCollections.observableArrayList();
         Statement st = conn.createStatement();
-        String sql = "SELECT hoTen, count(tv.idNhanKhau) AS soThanhVien,  diaChiHienNay, thoiGianNop\n" +
+        String sql = "SELECT hk.id AS idHoKhau, hoTen, count(tv.idNhanKhau) AS soThanhVien,  diaChiHienNay, thoiGianNop, soTienNop\n" +
                 "FROM ho_khau hk INNER JOIN nhan_khau nk ON (hk.idChuHo = nk.ID) INNER JOIN thanh_vien_cua_ho tv ON (hk.ID = tv.idHoKhau)\n" +
                 "LEFT OUTER JOIN thu_phi tp ON (hk.ID = tp.idHoKhau AND tp.idKhoanThu = " + id + ")\n" +
-                "GROUP BY hoTen, thoiGianNop, diaChiHienNay";
-        System.out.println(sql);
+                "GROUP BY hoTen, thoiGianNop, diaChiHienNay, hk.id";
         ResultSet rs = st.executeQuery(sql);
         int i = 1;
         while (rs.next())
         {
+            String idHoKhau = rs.getString("idHoKhau");
             String hoTenChuHo = rs.getString("hoTen");
-            String soTienDaNop = rs.getString("diaChiHienNay");
-            int soThanhVien = rs.getInt(2);
+            String diaChiHienNay = rs.getString("diaChiHienNay");
+            int soThanhVien = rs.getInt(3);
             String thoiGianNop = rs.getString("thoiGianNop");
-            Integer soTienPhaiNop = Integer.valueOf(soTien) * soThanhVien;
-            data.add(new ThuPhiData(String.valueOf(i), hoTenChuHo, String.valueOf(soThanhVien), String.valueOf(soTienPhaiNop), soTienDaNop, thoiGianNop));
+            Integer soTienPhaiNop = Integer.valueOf(soTien) * soThanhVien * 12;
+            Double soTienNop = rs.getDouble("soTienNop");
+            data.add(new ThuPhiData(idHoKhau, String.valueOf(i), hoTenChuHo, String.valueOf(soThanhVien), String.valueOf(soTienPhaiNop), diaChiHienNay, thoiGianNop, soTienNop));
             i++;
         }
         st.close();
         return data;
+    }
+
+    public int tinhTongSoTien(String idKhoanThu) throws SQLException {
+        Statement st = conn.createStatement();
+        String sql = "SELECT SUM(tp.soTienNop) AS tongSoTienNop\n" +
+                "FROM thu_phi tp\n" +
+                "WHERE tp.idKhoanThu = "+idKhoanThu+"\n" +
+                "GROUP BY tp.idKhoanThu";
+        ResultSet rs = st.executeQuery(sql);
+        int tongSoTien = 0;
+        while (rs.next()) {
+            tongSoTien = rs.getInt("tongSoTienNop");
+        }
+        return tongSoTien;
+    }
+
+    public int tinhSoNguoiDaNop(String idKhoanThu) throws SQLException {
+        Statement st = conn.createStatement();
+        String sql = "SELECT count(*) AS soNguoiDaNop\n" +
+                "FROM thu_phi tp\n" +
+                "WHERE tp.idKhoanThu = "+idKhoanThu+"\n" +
+                "GROUP BY tp.idKhoanThu";
+        ResultSet rs = st.executeQuery(sql);
+        int soNguoiDaNop = 0;
+        while (rs.next()) {
+            soNguoiDaNop = rs.getInt("soNguoiDaNop");
+        }
+        return soNguoiDaNop;
     }
 }

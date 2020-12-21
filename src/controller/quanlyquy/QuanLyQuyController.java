@@ -5,6 +5,7 @@ import animation.FadeOutLeftTransition;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
+import controller.thongke.ThongKeTheoHoKhauController;
 import datatable.KhoanThuData;
 import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
@@ -108,6 +109,32 @@ public class QuanLyQuyController implements Initializable {
         new FadeInRightTransition(trans).play();
         FXMLLoader addNhanKhauLoader = new FXMLLoader();
         AnchorPane pane = (AnchorPane) addNhanKhauLoader.load(getClass().getResource("/view/khoanthu/addkhoanthu.fxml").openStream());
+        loadPane.getChildren().setAll(pane);
+    }
+
+    @FXML
+    private void chiTietClicked() throws IOException {
+        if (id.equals("")) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("WARNING");
+            alert.setHeaderText(null);
+            alert.setContentText("Chọn một khoản thu!");
+            alert.showAndWait();
+        } else {
+            openChiTiet();
+        }
+    }
+
+    public void openChiTiet() throws IOException {
+        unclear.setEffect(new GaussianBlur(10));
+        btnClose.setLayoutX(280);
+        new FadeInRightTransition(trans).play();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/view/khoanthu/thongkekhoanthu.fxml"));
+        loader.setControllerFactory(c -> {
+            return new ThongKeKhoanThuController(id, tenKhoanThu);
+        });
+        AnchorPane pane = loader.load();
         loadPane.getChildren().setAll(pane);
     }
 
@@ -228,7 +255,6 @@ public class QuanLyQuyController implements Initializable {
             data = FXCollections.observableArrayList();
             animationFade(khoanThuTableView);
             if (filter.getSelectionModel().getSelectedItem().toString().equals("Ngày")) {
-                System.out.println(datePicker.getValue().toString());
                 data = khoanThuService.filterDate(datePicker.getValue().toString(), searchText.getText(), loaiKhoanThuComboBox.getSelectionModel().getSelectedItem().toString());
             } else if (filter.getSelectionModel().getSelectedItem().toString().equals("Tháng")) {
                 data = khoanThuService.filterMonth(month.getSelectionModel().getSelectedItem().toString(), year.getText(), searchText.getText(), loaiKhoanThuComboBox.getSelectionModel().getSelectedItem().toString());

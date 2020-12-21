@@ -38,18 +38,18 @@
                         </HBox>
                         <TableView fx:id="thuPhiTableView" editable="true" fixedCellSize="0.0" focusTraversable="false" layoutX="10.0" layoutY="58.0" onMouseClicked="#rowClicked" prefHeight="356.0" prefWidth="764.0" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="58.0">
                             <columns>
-                                <TableColumn fx:id="idColumn" editable="false" prefWidth="95.0" resizable="false" sortable="false" text="ID" visible="false" />
+                                <TableColumn fx:id="idHoKhauColumn" editable="false" prefWidth="95.0" resizable="false" sortable="false" text="ID Hộ Khẩu" visible="false" />
                                 <TableColumn fx:id="sttColumn" editable="false" prefWidth="38.0" resizable="false" sortable="false" text="STT" />
                                 <TableColumn fx:id="tenChuHoColumn" editable="false" prefWidth="124.0" resizable="false" sortable="false" text="Họ tên chủ hộ" />
                                 <TableColumn fx:id="soThanhVienColumn" editable="false" prefWidth="88.0" resizable="false" sortable="false" text="Số thành viên" />
-                                <TableColumn fx:id="soTienDaNopColumn" editable="false" prefWidth="232.0" sortable="false" text="Địa chỉ" />
-                                <TableColumn fx:id="soTienPhaiNopColumn" editable="false" prefWidth="105.0" resizable="false" sortable="false" text="Số tiền phải nộp" />
-                        <TableColumn fx:id="thoiGianNopColumn" maxWidth="173.0" prefWidth="93.0" text="Thời gian nộp">
+                                <TableColumn fx:id="diaChiHienNayColumn" editable="false" prefWidth="219.0" sortable="false" text="Địa chỉ hiện nay" />
+                                <TableColumn fx:id="soTienNopColumn" editable="false" prefWidth="105.0" resizable="false" sortable="false" text="Số tiền nộp" />
+                        <TableColumn fx:id="thoiGianNopColumn" maxWidth="173.0" prefWidth="97.0" text="Thời gian nộp">
                             <cellValueFactory>
                                 <PropertyValueFactory property="thoiGianNop" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn fx:id="selectedColoum" maxWidth="78.0" prefWidth="29.0" />
+                        <TableColumn fx:id="selectedColoum" maxWidth="78.0" prefWidth="38.0" />
                             </columns>
                         </TableView>
                         <AnchorPane layoutX="10.0" layoutY="-3.0" prefHeight="40.0" prefWidth="710.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="6.0">

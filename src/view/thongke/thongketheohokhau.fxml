@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="427.0" prefWidth="495.0" style="-fx-background-color: #ececec;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.thongke.ThongKeTheoHoKhauController">
+    <effect>
+        <DropShadow />
+    </effect>
+   <children>
+      <Label fx:id="labelHoTenChuHo" layoutX="10.0" layoutY="10.0" text="Họ Tên Chủ Hộ">
+         <font>
+            <Font name="Segoe UI Bold" size="18.0" />
+         </font>
+      </Label>
+      <TableView fx:id="table" layoutY="42.0" prefHeight="385.0" prefWidth="495.0">
+        <columns>
+          <TableColumn fx:id="tenKhoanThuColumn" prefWidth="280.0" text="Tên khoản thu" />
+          <TableColumn fx:id="ngayNopColumn" prefWidth="117.0" text="Ngày nộp" />
+            <TableColumn fx:id="soTienColumn" minWidth="3.0" prefWidth="97.0" text="Số tiền" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

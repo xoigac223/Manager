@@ -40,20 +40,12 @@
                     <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="764.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0">
                             <children>
-                                <JFXButton fx:id="btn_add" focusTraversable="false" onAction="#addClicked" style="-fx-background-color: #4183d7;" text="Thêm" textFill="WHITE">
+                                <JFXButton fx:id="btn_add" focusTraversable="false" onAction="#addClicked" prefHeight="27.0" prefWidth="65.0" style="-fx-background-color: #4183d7;" text="Thêm" textFill="WHITE">
                                     <font>
                                         <Font name="Segoe UI" size="13.0" />
                                     </font>
                                 </JFXButton>
-                                <JFXButton fx:id="btn_update" focusTraversable="false" prefHeight="27.0" prefWidth="52.0" style="-fx-background-color: #4183d7;" text="Sửa" textFill="WHITE">
-                                    <font>
-                                        <Font name="Segoe UI" size="13.0" />
-                                    </font>
-                                    <HBox.margin>
-                                        <Insets left="10.0" />
-                                    </HBox.margin>
-                                </JFXButton>
-                                <JFXButton fx:id="btn_delete" focusTraversable="false" prefHeight="27.0" prefWidth="52.0" style="-fx-background-color: #4183d7;" text="Xóa" textFill="WHITE">
+                                <JFXButton fx:id="btnChiTiet" focusTraversable="false" onAction="#chiTietClicked" prefHeight="27.0" prefWidth="71.0" style="-fx-background-color: #4183d7;" text="Chi Tiết" textFill="WHITE">
                                     <font>
                                         <Font name="Segoe UI" size="13.0" />
                                     </font>
@@ -61,23 +53,31 @@
                                         <Insets left="10.0" />
                                     </HBox.margin>
                                 </JFXButton>
-                        <JFXButton fx:id="btnThuPhi" focusTraversable="false" layoutX="133.0" layoutY="17.0" onAction="#thuPhiClicked" prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #4183d7;" text="Thu phí" textFill="WHITE">
-                           <font>
-                              <Font name="Segoe UI" size="13.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="520.0" />
-                           </HBox.margin>
-                        </JFXButton>
+                                <JFXButton fx:id="btn_delete" focusTraversable="false" prefHeight="27.0" prefWidth="59.0" style="-fx-background-color: #4183d7;" text="Xóa" textFill="WHITE">
+                                    <font>
+                                        <Font name="Segoe UI" size="13.0" />
+                                    </font>
+                                    <HBox.margin>
+                                        <Insets left="10.0" />
+                                    </HBox.margin>
+                                </JFXButton>
+                                <JFXButton fx:id="btnThuPhi" focusTraversable="false" layoutX="133.0" layoutY="17.0" onAction="#thuPhiClicked" prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #4183d7;" text="Thu phí" textFill="WHITE">
+                                    <font>
+                                        <Font name="Segoe UI" size="13.0" />
+                                    </font>
+                                    <HBox.margin>
+                                        <Insets left="520.0" />
+                                    </HBox.margin>
+                                </JFXButton>
                             </children>
                         </HBox>
                         <TableView fx:id="khoanThuTableView" fixedCellSize="0.0" focusTraversable="false" layoutX="10.0" layoutY="58.0" onMouseClicked="#rowClicked" prefHeight="356.0" prefWidth="764.0" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="58.0">
                             <contextMenu>
                                 <ContextMenu fx:id="contextMenu">
                                     <items>
-                                        <MenuItem mnemonicParsing="false" text="Sửa" />
+                                        <MenuItem mnemonicParsing="false" onAction="#chiTietClicked" text="Chi tiết" />
                                         <MenuItem mnemonicParsing="false" text="Xóa" />
-                              <MenuItem mnemonicParsing="false" onAction="#thuPhiClicked" text="Thu phí" />
+                                        <MenuItem mnemonicParsing="false" onAction="#thuPhiClicked" text="Thu phí" />
                                     </items>
                                 </ContextMenu>
                             </contextMenu>
@@ -88,7 +88,7 @@
                                 <TableColumn fx:id="batBuocColumn" editable="false" prefWidth="73.0" resizable="false" sortable="false" text="Bắt Buộc" />
                                 <TableColumn fx:id="soTienColumn" editable="false" prefWidth="153.0" resizable="false" sortable="false" text="Số Tiền" />
                                 <TableColumn fx:id="thoiGianColumn" prefWidth="122.0" text="Thời gian" />
-                        <TableColumn fx:id="hanNopColumn" maxWidth="167.0" prefWidth="138.0" text="Hạn nộp" />
+                                <TableColumn fx:id="hanNopColumn" maxWidth="167.0" prefWidth="138.0" text="Hạn nộp" />
                             </columns>
                         </TableView>
                         <AnchorPane layoutX="10.0" layoutY="6.0" prefHeight="46.0" prefWidth="764.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="6.0">
@@ -111,7 +111,7 @@
                                 </ImageView>
                                 <JFXTextField fx:id="searchText" focusTraversable="false" labelFloat="true" layoutX="395.0" layoutY="11.0" prefHeight="25.0" prefWidth="127.0" promptText="Tên khoản thu" AnchorPane.bottomAnchor="8.0" AnchorPane.topAnchor="13.0" />
                                 <Separator layoutY="4.0" orientation="VERTICAL" prefHeight="40.0" prefWidth="0.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="4.0" />
-                        <JFXComboBox fx:id="loaiKhoanThuComboBox" labelFloat="true" layoutX="538.0" layoutY="13.0" prefHeight="25.0" prefWidth="135.0" promptText="Loại khoản thu" />
+                                <JFXComboBox fx:id="loaiKhoanThuComboBox" labelFloat="true" layoutX="538.0" layoutY="13.0" prefHeight="25.0" prefWidth="135.0" promptText="Loại khoản thu" />
                             </children>
                         </AnchorPane>
                     </children>

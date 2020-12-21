@@ -62,6 +62,15 @@ public class AdminController implements Initializable {
         btnUserManagement.setStyle("-fx-background-color: #ECF0F1");
         btnQuanLyQuy.setStyle("-fx-background-color: #D2D7D3");
     }
+
+    @FXML
+    private void setBackgroundThongKe(javafx.scene.input.MouseEvent event){
+        btnHome.setStyle("-fx-background-color: #ECF0F1");
+        btnHoKhau.setStyle("-fx-background-color: #ECF0F1");
+        btnQuanLyQuy.setStyle("-fx-background-color: #ECF0F1");
+        btnUserManagement.setStyle("-fx-background-color: #ECF0F1");
+        btnThongKe.setStyle("-fx-background-color: #D2D7D3");
+    }
     @FXML
     private void userManagementClicked() throws IOException{
         userManagementMenu();
@@ -70,6 +79,24 @@ public class AdminController implements Initializable {
     @FXML
     private void quanLyQuyClicked() throws IOException{
         quanLyQuyMenu();
+    }
+
+    @FXML
+    private void thongKeClicked() throws IOException {
+        thongKeMenu();
+    }
+
+    public void thongKeMenu() throws IOException{
+        try {
+            rootPane.getChildren().clear();
+            rootPane.setOpacity(0);
+            new FadeInRightTransition(rootPane).play();
+            FXMLLoader adminLoader = new FXMLLoader();
+            AnchorPane pane = (AnchorPane)adminLoader.load(getClass().getResource("/view/thongke/thongke.fxml"));
+            rootPane.getChildren().setAll(pane);
+        } catch (IOException e) {
+            System.out.println(e);
+        }
     }
 
     public void userManagementMenu() throws IOException{

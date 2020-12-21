@@ -1,27 +1,35 @@
 package datatable;
 
-import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXDatePicker;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 public class ThuPhiData {
+    private final StringProperty idHoKhau;
     private final StringProperty stt;
     private final StringProperty hoTenChuHo;
     private final StringProperty soThanhVien;
     private final StringProperty soTienPhaiNop;
-    private final StringProperty soTienDaNop;
+    private final StringProperty diaChiHienNay;
     private final StringProperty thoiGianNop;
-    private JFXCheckBox selected;
+    private final SimpleDoubleProperty soTienNop;
+    private JFXDatePicker selected;
 
-    public ThuPhiData(String stt, String hoTenChuHo, String soThanhVien,  String soTienPhaiNop, String soTienDaNop, String thoiGianNop){
+    public ThuPhiData(String idHoKhau, String stt, String hoTenChuHo, String soThanhVien, String soTienPhaiNop, String diaChiHienNay, String thoiGianNop, Double soTienNop){
+        this.idHoKhau = new SimpleStringProperty(idHoKhau);
         this.stt = new SimpleStringProperty(stt);
         this.hoTenChuHo = new SimpleStringProperty(hoTenChuHo);
         this.soThanhVien = new SimpleStringProperty(soThanhVien);
         this.soTienPhaiNop = new SimpleStringProperty(soTienPhaiNop);
-        this.soTienDaNop = new SimpleStringProperty(soTienDaNop);
+        this.diaChiHienNay = new SimpleStringProperty(diaChiHienNay);
         this.thoiGianNop = new SimpleStringProperty(thoiGianNop);
-        this.selected = new JFXCheckBox();
-        if (thoiGianNop != null) selected.setSelected(true);
+        this.soTienNop = new SimpleDoubleProperty(soTienNop);
+        this.selected = new JFXDatePicker();
     }
 
     public String getStt() {
@@ -72,16 +80,40 @@ public class ThuPhiData {
         this.soTienPhaiNop.set(soTienPhaiNop);
     }
 
-    public String getSoTienDaNop() {
-        return soTienDaNop.get();
+    public String getDiaChiHienNay() {
+        return diaChiHienNay.get();
     }
 
-    public StringProperty soTienDaNopProperty() {
-        return soTienDaNop;
+    public StringProperty diaChiHienNayProperty() {
+        return diaChiHienNay;
     }
 
-    public void setSoTienDaNop(String soTienDaNop) {
-        this.soTienDaNop.set(soTienDaNop);
+    public void setDiaChiHienNay(String diaChiHienNay) {
+        this.diaChiHienNay.set(diaChiHienNay);
+    }
+
+    public double getSoTienNop() {
+        return soTienNop.get();
+    }
+
+    public SimpleDoubleProperty soTienNopProperty() {
+        return soTienNop;
+    }
+
+    public void setSoTienNop(double soTienNop) {
+        this.soTienNop.set(soTienNop);
+    }
+
+    public String getIdHoKhau() {
+        return idHoKhau.get();
+    }
+
+    public StringProperty idHoKhauProperty() {
+        return idHoKhau;
+    }
+
+    public void setIdHoKhau(String idHoKhau) {
+        this.idHoKhau.set(idHoKhau);
     }
 
     public String getThoiGianNop() {
@@ -96,11 +128,11 @@ public class ThuPhiData {
         this.thoiGianNop.set(thoiGianNop);
     }
 
-    public JFXCheckBox getSelected() {
+    public JFXDatePicker getSelected() {
         return selected;
     }
 
-    public void setSelected(JFXCheckBox selected) {
+    public void setSelected(JFXDatePicker selected) {
         this.selected = selected;
     }
 }
