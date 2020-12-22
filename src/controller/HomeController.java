@@ -72,7 +72,7 @@ public class HomeController implements Initializable {
     public void setBarChart() throws SQLException {
 
         XYChart.Series dataSeries = new XYChart.Series();
-
+        dataSeries.setName("Đơn vị: đồng");
         ThuPhiService thuPhiService = new ThuPhiService();
         HashMap data = thuPhiService.getTop3();
 
