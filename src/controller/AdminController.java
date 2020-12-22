@@ -1,6 +1,7 @@
 package controller;
 
 import animation.FadeInRightTransition;
+import animation.FadeInTransition;
 import com.jfoenix.controls.JFXButton;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -148,7 +149,23 @@ public class AdminController implements Initializable {
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
         dateLabel.setText(sdf.format(date));
+        try {
+            homeMenu();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-
+    public void homeMenu() throws IOException{
+        try {
+            rootPane.getChildren().clear();
+            rootPane.setOpacity(0);
+            new FadeInTransition(rootPane).play();
+            FXMLLoader adminLoader = new FXMLLoader();
+            AnchorPane pane = (AnchorPane)adminLoader.load(getClass().getResource("/view/home.fxml"));
+            rootPane.getChildren().setAll(pane);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 }

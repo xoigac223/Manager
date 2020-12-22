@@ -1,0 +1,9 @@
+
+
+.background{
+    -fx-background-color: linear-gradient(to left, #457fca, #5691c8);
+}
+
+.danhsach{
+    -fx-background-color: linear-gradient(to left, #005c97, #363795);
+}
