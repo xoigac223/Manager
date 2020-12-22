@@ -15,9 +15,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import model.KhoanThuModel;
 import model.ThuPhiModel;
+import org.apache.poi.xssf.streaming.SXSSFWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import service.KhoanThuService;
 import service.ThuPhiService;
 
+import java.io.FileOutputStream;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -91,7 +96,7 @@ public class ThuPhiController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        setTableEditable();
+        thuPhiTableView.setEditable(true);
         loadTable();
         if (batBuoc.equals("1")){
             labelName.setText(" " + tenKhoanThu + " - Có bắt buộc - " + soTien + "/người");
@@ -159,69 +164,56 @@ public class ThuPhiController implements Initializable {
         thuPhiTableView.setItems(data);
     }
 
-    private void setTableEditable() {
-        thuPhiTableView.setEditable(true);
-        // allows the individual cells to be selected
-        thuPhiTableView.getSelectionModel().cellSelectionEnabledProperty().set(true);
-        // when character or numbers pressed it will start edit in editable
-        // fields
-        thuPhiTableView.setOnKeyPressed(event -> {
-            if (event.getCode().isLetterKey() || event.getCode().isDigitKey()) {
-                editFocusedCell();
-            } else if (event.getCode() == KeyCode.RIGHT
-                    || event.getCode() == KeyCode.TAB) {
-                thuPhiTableView.getSelectionModel().selectNext();
-                event.consume();
-            } else if (event.getCode() == KeyCode.LEFT) {
-                // work around due to
-                // TableView.getSelectionModel().selectPrevious() due to a bug
-                // stopping it from working on
-                // the first column in the last row of the table
-                selectPrevious();
-                event.consume();
-            }
-        });
-    }
 
-    @SuppressWarnings("unchecked")
-    private void editFocusedCell() {
-        final TablePosition<ThuPhiData, ?> focusedCell = thuPhiTableView
-                .getFocusModel().getFocusedCell();
-        thuPhiTableView.edit(focusedCell.getRow(), focusedCell.getTableColumn());
-    }
 
-    @SuppressWarnings("unchecked")
-    private void selectPrevious() {
-        if (thuPhiTableView.getSelectionModel().isCellSelectionEnabled()) {
-            // in cell selection mode, we have to wrap around, going from
-            // right-to-left, and then wrapping to the end of the previous line
-            TablePosition<ThuPhiController, ?> pos = thuPhiTableView.getFocusModel()
-                    .getFocusedCell();
-            if (pos.getColumn() - 1 >= 0) {
-                // go to previous row
-                thuPhiTableView.getSelectionModel().select(pos.getRow(),
-                        getTableColumn(pos.getTableColumn(), -1));
-            } else if (pos.getRow() < thuPhiTableView.getItems().size()) {
-                // wrap to end of previous row
-                thuPhiTableView.getSelectionModel().select(pos.getRow() - 1,
-                        thuPhiTableView.getVisibleLeafColumn(
-                                thuPhiTableView.getVisibleLeafColumns().size() - 1));
+
+    @FXML
+    private void exportClicked(){
+        try{
+            XSSFWorkbook wb = new XSSFWorkbook();
+            XSSFSheet sheet = wb.createSheet();
+            XSSFRow header = sheet.createRow(0);
+            header.createCell(0).setCellValue("STT");
+            header.createCell(1).setCellValue("Họ và tên chủ hộ");
+            header.createCell(2).setCellValue("Số thành viên");
+            header.createCell(3).setCellValue("Địa chỉ hiện nay");
+            header.createCell(4).setCellValue("Số tiền đã nộp");
+            header.createCell(5).setCellValue("Thời gian nộp");
+            header.createCell(6).setCellValue("Kí tên");
+
+            ObservableList<ThuPhiData> dataExcel = FXCollections.observableArrayList();
+            dataExcel = khoanThuService.getThuPhi(id, soTien);
+            int i = 1;
+            for (ThuPhiData e: dataExcel){
+                XSSFRow row = sheet.createRow(i);
+                row.createCell(0).setCellValue(e.getStt());
+                row.createCell(1).setCellValue(e.getHoTenChuHo());
+                row.createCell(2).setCellValue(e.getSoThanhVien());
+                row.createCell(3).setCellValue(e.getDiaChiHienNay());
+                row.createCell(4).setCellValue(e.getSoTienNop());
+                row.createCell(5).setCellValue(e.getThoiGianNop());
+                i++;
             }
-        } else {
-            int focusIndex = thuPhiTableView.getFocusModel().getFocusedIndex();
-            if (focusIndex == -1) {
-                thuPhiTableView.getSelectionModel().select(thuPhiTableView.getItems().size() - 1);
-            } else if (focusIndex > 0) {
-                thuPhiTableView.getSelectionModel().select(focusIndex - 1);
-            }
+            String filename = tenKhoanThu + ".xlsx";
+            FileOutputStream fileOut = new FileOutputStream(filename);
+            wb.write(fileOut);
+            fileOut.close();
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Thành công");
+            alert.setHeaderText(null);
+            alert.setContentText("Lưu file thành công");
+            alert.showAndWait();
+
+        } catch (Exception e){
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Thất bại");
+            alert.setHeaderText(null);
+            alert.setContentText("Lưu file thất bại vui lòng thử lại");
+            alert.showAndWait();
+
         }
-    }
-
-    private TableColumn<ThuPhiData, ?> getTableColumn(
-            final TableColumn<ThuPhiController, ?> column, int offset) {
-        int columnIndex = thuPhiTableView.getVisibleLeafIndex(column);
-        int newColumnIndex = columnIndex + offset;
-        return thuPhiTableView.getVisibleLeafColumn(newColumnIndex);
     }
 }
 

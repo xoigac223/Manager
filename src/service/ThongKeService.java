@@ -45,7 +45,6 @@ public class ThongKeService extends Database{
         String sql = "SELECT kt.tenKhoanThu, tp.thoiGianNop, tp.soTienNop\n" +
                 "FROM thu_phi tp, khoan_thu kt\n" +
                 "WHERE tp.idKhoanTHu = kt.ID AND kt.batBuoc = 0 AND tp.idHoKhau = " + idHoKhau;
-        System.out.println(sql);
         ResultSet rs = st.executeQuery(sql);
         while (rs.next())
         {

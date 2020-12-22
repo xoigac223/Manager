@@ -32,7 +32,7 @@
         </StackPane>
         <AnchorPane id="AnchorPane" layoutX="19.0" layoutY="19.0" prefHeight="622.0" prefWidth="873.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <AnchorPane fx:id="blur" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <AnchorPane fx:id="blur" layoutX="-156.0" prefHeight="622.0" prefWidth="1117.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <children>
                         <AnchorPane prefHeight="161.0" prefWidth="961.0" style="-fx-background-color: #4183D7;" AnchorPane.bottomAnchor="457.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
@@ -56,9 +56,9 @@
                                         <Font name="Segoe UI Semilight" size="14.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="namaUser" layoutX="62.0" layoutY="127.0" text="Have a nice day!" textFill="WHITE">
+                                <Label fx:id="userName" layoutX="62.0" layoutY="127.0" text="NHÓM 21" textFill="WHITE">
                                     <font>
-                                        <Font name="Segoe UI" size="12.0" />
+                                        <Font name="Segoe UI Bold" size="16.0" />
                                     </font>
                                 </Label>
                                 <ImageView fx:id="imageUser" fitHeight="40.0" fitWidth="40.0" layoutX="9.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
@@ -88,7 +88,7 @@
                                     </font>
                                 </Label>
                                 <Label fx:id="levelUser" layoutX="311.0" layoutY="32.0" text="level" visible="false" />
-                                <JFXButton alignment="CENTER" contentDisplay="RIGHT" focusTraversable="false" layoutX="858.0" layoutY="127.0" prefHeight="17.0" prefWidth="100.0" text="Logout" textFill="WHITE">
+                                <JFXButton alignment="CENTER" contentDisplay="RIGHT" focusTraversable="false" layoutX="858.0" layoutY="127.0" onAction="#logoutClicked" prefHeight="17.0" prefWidth="100.0" text="Logout" textFill="WHITE">
                                     <font>
                                         <Font name="Segoe UI Bold" size="14.0" />
                                     </font>
@@ -100,13 +100,21 @@
                                         </ImageView>
                                     </graphic>
                                 </JFXButton>
+                        <Label fx:id="minimize" alignment="CENTER" contentDisplay="CENTER" layoutX="900.0" layoutY="-1.0" onMouseClicked="#handleMinimizeClicked" onMouseEntered="#setHover2" onMouseExited="#setDefault2" prefHeight="17.0" prefWidth="30.0" text="-" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Black Italic" size="20.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Label>
                             </children>
                         </AnchorPane>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="457.0" prefWidth="195.0" style="-fx-background-color: #ECF0F1;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="780.0">
                             <children>
                                   <VBox fx:id="admin" prefHeight="461.0" prefWidth="181.0">
                                       <children>
-                                          <JFXButton fx:id="btnHome" alignment="BASELINE_LEFT" focusTraversable="false" prefHeight="41.0" prefWidth="185.0" style="-fx-background-color: #D2D7D3;" text="Home" textFill="#4183d7">
+                                          <JFXButton fx:id="btnHome" alignment="BASELINE_LEFT" focusTraversable="false" onAction="#homeClicked" onMouseClicked="#setBackgroundHome" prefHeight="41.0" prefWidth="185.0" style="-fx-background-color: #D2D7D3;" text="Home" textFill="#4183d7">
                                               <graphic>
                                                   <ImageView fitHeight="31.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                                       <image>
@@ -195,7 +203,12 @@
                                   </VBox>
                             </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="rootPane" minHeight="0.0" minWidth="0.0" opacity="0.0" prefHeight="461.0" prefWidth="781.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="165.0" />
+                        <AnchorPane fx:id="rootPane" layoutX="181.0" layoutY="165.0" minHeight="0.0" minWidth="0.0" opacity="0.0" prefHeight="461.0" prefWidth="780.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="181.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="165.0" />
+                  <Label fx:id="exit" alignment="CENTER" contentDisplay="CENTER" layoutX="930.0" onMouseClicked="#handleExitClicked" onMouseEntered="#setHover" onMouseExited="#setDefault" prefHeight="30.0" prefWidth="30.0" text="X" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI Black" size="20.0" />
+                     </font>
+                  </Label>
                     </children>
                 </AnchorPane>
             </children>

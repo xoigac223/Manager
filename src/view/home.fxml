@@ -11,14 +11,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="455.0" prefWidth="774.0" style="-fx-background-color: #ececec;" stylesheets="@home.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
+<AnchorPane id="AnchorPane" prefHeight="460.0" prefWidth="774.0" style="-fx-background-color: #ececec;" stylesheets="@home.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
     <children>
-        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="48.0" prefWidth="774.0" text="Welcome" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <font>
-                <Font name="Segoe UI Bold" size="24.0" />
-            </font>
-        </Label>
-      <HBox layoutX="14.0" layoutY="62.0" prefHeight="123.0" prefWidth="747.0">
+      <HBox layoutX="14.0" layoutY="28.0" prefHeight="123.0" prefWidth="747.0">
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 10;" styleClass="background">
                <HBox.margin>
@@ -110,7 +105,15 @@
             </AnchorPane>
          </children>
       </HBox>
-      <VBox layoutX="401.0" layoutY="201.0" prefHeight="245.0" prefWidth="361.0" style="-fx-background-radius: 10;" styleClass="background">
+      <BarChart fx:id="barChart" layoutX="388.0" layoutY="183.0" prefHeight="278.0" prefWidth="367.0" title="Top 3 khoản thu nhiều nhất">
+        <xAxis>
+          <CategoryAxis label="Khoản thu" side="BOTTOM" fx:id="x" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="y" label="Tổng số tiền" side="LEFT" />
+        </yAxis>
+      </BarChart>
+      <VBox layoutX="14.0" layoutY="199.0" prefHeight="245.0" prefWidth="361.0" style="-fx-background-radius: 10;" styleClass="background">
          <children>
             <HBox prefHeight="36.0" prefWidth="354.0">
                <children>
@@ -197,13 +200,5 @@
             </HBox>
          </children>
       </VBox>
-      <BarChart layoutX="13.0" layoutY="191.0" prefHeight="278.0" prefWidth="361.0">
-        <xAxis>
-          <CategoryAxis side="BOTTOM" />
-        </xAxis>
-        <yAxis>
-          <NumberAxis side="LEFT" />
-        </yAxis>
-      </BarChart>
     </children>
 </AnchorPane>
