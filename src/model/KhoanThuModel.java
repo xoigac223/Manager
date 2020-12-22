@@ -11,8 +11,9 @@ public class KhoanThuModel {
     private Date thoiGian;
     private Date hanNop;
 
-    public KhoanThuModel(){
-
+    public KhoanThuModel(String tenKhoanThu, Date hanNop){
+        this.tenKhoanThu = tenKhoanThu;
+        this.hanNop = hanNop;
     }
     public KhoanThuModel(String tenKhoanThu, double soTien, Date thoiGian, Date hanNop) {
         this.tenKhoanThu = tenKhoanThu;

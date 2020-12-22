@@ -7,7 +7,10 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
-import org.apache.poi.ss.formula.functions.T;
+import model.KhoanThuModel;
+import service.HoKhauService;
+import service.KhoanThuService;
+import service.NhanKhauService;
 import service.ThuPhiService;
 
 import java.net.URL;
@@ -37,10 +40,30 @@ public class HomeController implements Initializable {
     @FXML
     private NumberAxis y;
 
+    @FXML
+    private Label tenKhoanThuTop1;
+
+    @FXML
+    private Label hanNopTop1;
+
+    @FXML
+    private Label tenKhoanThuTop2;
+
+    @FXML
+    private Label hanNopTop2;
+
+    @FXML
+    private Label tenKhoanThuTop3;
+
+    @FXML
+    private Label hanNopTop3;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
             setBarChart();
+            setData();
+            setKhoanThuSapHetHan();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -61,6 +84,25 @@ public class HomeController implements Initializable {
         }
 
         barChart.getData().addAll(dataSeries);
+    }
 
+    public void setData() throws SQLException {
+        HoKhauService hoKhauService = new HoKhauService();
+        NhanKhauService nhanKhauService = new NhanKhauService();
+        lbSoHoKhau.setText(String.valueOf(hoKhauService.tinhSoHoKhau()));
+        lbSoNhanKhau.setText(String.valueOf(nhanKhauService.tinhSoNhanKhau()));
+        lbTamVang.setText(String.valueOf(nhanKhauService.tinhSoNhanKhauTamVang()));
+        lbTamTru.setText(String.valueOf(nhanKhauService.tinhSoNhanKhauTamTru()));
+    }
+
+    public void setKhoanThuSapHetHan() throws SQLException {
+        KhoanThuService khoanThuService = new KhoanThuService();
+        ArrayList<KhoanThuModel> khoanThuModelArrayList = khoanThuService.getTop3();
+        tenKhoanThuTop1.setText(khoanThuModelArrayList.get(0).getTenKhoanThu());
+        hanNopTop1.setText(String.valueOf(khoanThuModelArrayList.get(0).getHanNop()));
+        tenKhoanThuTop2.setText(khoanThuModelArrayList.get(1).getTenKhoanThu());
+        hanNopTop2.setText(String.valueOf(khoanThuModelArrayList.get(1).getHanNop()));
+        tenKhoanThuTop3.setText(khoanThuModelArrayList.get(2).getTenKhoanThu());
+        hanNopTop3.setText(String.valueOf(khoanThuModelArrayList.get(2).getHanNop()));
     }
 }

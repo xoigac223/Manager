@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import model.KhoanThuModel;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class KhoanThuService extends Database {
 
@@ -185,5 +186,22 @@ public class KhoanThuService extends Database {
             soNguoiDaNop = rs.getInt("soNguoiDaNop");
         }
         return soNguoiDaNop;
+    }
+
+    public ArrayList<KhoanThuModel> getTop3() throws SQLException {
+        ArrayList<KhoanThuModel> arr = new ArrayList<>();
+        Statement st = conn.createStatement();
+        String sql = "SELECT *\n" +
+                "FROM khoan_thu\n" +
+                "WHERE DATEDIFF(hanNop, CURDATE()) >= 0\n" +
+                "ORDER BY DATEDIFF(hanNop, CURDATE())\n" +
+                "LIMIT 3";
+        ResultSet rs = st.executeQuery(sql);
+        while (rs.next()) {
+            String tenKhoanThu = rs.getString("tenKhoanThu");
+            Date date = rs.getDate("hanNop");
+            arr.add(new KhoanThuModel(tenKhoanThu, date));
+        }
+        return arr;
     }
 }

@@ -65,4 +65,39 @@ public class NhanKhauService extends Database {
         preparedStatement.setInt(19, idNguoiTao);
         return preparedStatement.executeUpdate();
     }
+
+    public int tinhSoNhanKhau() throws SQLException {
+        Statement st = conn.createStatement();
+        String sql = "SELECT COUNT(*) AS soNhanKhau\n" +
+                "FROM nhan_khau";
+        ResultSet rs = st.executeQuery(sql);
+        int soHoKhau = 0;
+        while (rs.next()) {
+            soHoKhau = rs.getInt("soNhanKhau");
+        }
+        return soHoKhau;
+    }
+    public int tinhSoNhanKhauTamTru() throws SQLException {
+        Statement st = conn.createStatement();
+        String sql = "SELECT COUNT(*) AS soNhanKhauTamTru\n" +
+                "FROM tam_tru";
+        ResultSet rs = st.executeQuery(sql);
+        int soHoKhau = 0;
+        while (rs.next()) {
+            soHoKhau = rs.getInt("soNhanKhauTamTru");
+        }
+        return soHoKhau;
+    }
+
+    public int tinhSoNhanKhauTamVang() throws SQLException {
+        Statement st = conn.createStatement();
+        String sql = "SELECT COUNT(*) AS soNhanKhauTamVang\n" +
+                "FROM tam_vang";
+        ResultSet rs = st.executeQuery(sql);
+        int soHoKhau = 0;
+        while (rs.next()) {
+            soHoKhau = rs.getInt("soNhanKhauTamVang");
+        }
+        return soHoKhau;
+    }
 }
